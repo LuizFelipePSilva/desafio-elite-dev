@@ -1,0 +1,42 @@
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: desafio_dev_elite_dev_db
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - ./.docker/volumes/dev/postgres:/var/lib/postgresql/data
+    ports:
+      - "${DB_PORT}:5432"
+    networks:
+      - desafio_elite_dev
+
+  redis-cache:
+    image: redis:7.4.2-alpine
+    container_name: desafio_dev_elite_dev_redis_cache
+    command: redis-server --requirepass ${REDIS_PASS}
+    ports:
+      - "${REDIS_PORT}:6379"
+    volumes:
+      - ./.docker/volumes/dev/redis-cache:/data
+    networks:
+      - desafio_elite_dev
+
+  redis-lock:
+    image: redis:7.4.2-alpine
+    container_name: desafio_dev_elite_dev_redis_lock
+    command: redis-server --requirepass ${REDIS_LOCK_PASS} --maxmemory 64mb --maxmemory-policy noeviction --save ""
+    ports:
+      - "${REDIS_LOCK_PORT}:6379"
+    mem_limit: 96m
+    cpus: 0.25
+    networks:
+      - desafio_elite_dev
+
+networks:
+  desafio_elite_dev:
+    driver: bridge
