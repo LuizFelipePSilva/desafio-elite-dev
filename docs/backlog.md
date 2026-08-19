@@ -2,12 +2,12 @@
 
 ## Sprint 1
 
-- [ ] Configurar PostgreSQL
-- [ ] Configurar Redis
-- [ ] Configurar TypeORM
-- [ ] Configurar JWT
-- [ ] Criar módulo Users
-- [ ] Criar módulo Auth
+- [ X ] Configurar PostgreSQL
+- [ X] Configurar Redis
+- [ X] Configurar TypeORM
+- [ X] Configurar JWT
+- [ X] Criar módulo Users
+- [ X] Criar módulo Auth
 
 ---
 
