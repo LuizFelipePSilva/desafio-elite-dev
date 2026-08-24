@@ -32,6 +32,6 @@ export const theme = {
     xl: '2rem',
     '2xl': '3rem',
   },
-} as const
+} as const;
 
-export type Theme = typeof theme
+export type Theme = typeof theme;

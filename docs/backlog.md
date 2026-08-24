@@ -13,10 +13,9 @@
 
 ## Sprint 2
 
-- [ ] Integração TMDb/Ticketmaster
-- [ ] Criar Event
-- [ ] Criar Sector
-- [ ] Criar Seat
+- [ X ] Integração TMDb/Ticketmaster
+- [ X] Criar Event
+- [ X ] Criar Sector
 
 ---
 
@@ -40,12 +39,10 @@
 
 - [ ] Validação de ingresso
 - [ ] Portaria
-- [ ] Seed inicial
+- [ X] Seed inicial
 
 ---
 
 ## Sprint 6
 
-- [ ] Testes
 - [ ] README
-- [ ] Deploy
