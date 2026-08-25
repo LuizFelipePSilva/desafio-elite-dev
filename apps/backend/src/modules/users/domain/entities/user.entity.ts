@@ -1,5 +1,12 @@
 import { Exclude } from 'class-transformer';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  DeleteDateColumn,
+  UpdateDateColumn,
+  CreateDateColumn,
+} from 'typeorm';
 
 export const UserRole = {
   ORGANIZER: 'ORGANIZER',
@@ -30,4 +37,13 @@ export class User {
     default: UserRole.CUSTOMER,
   })
   role: UserRole;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt: Date | null;
 }

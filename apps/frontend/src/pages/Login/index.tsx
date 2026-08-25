@@ -1,10 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 import * as S from './styles';
 
+import { useAuthStore } from '@/app/store';
 import { LoginForm } from '@/features/auth';
 
 export function Login() {
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+
+  if (isAuthenticated) {
+    return <Navigate to="/" replace />;
+  }
   return (
     <S.Container>
       <S.Brand>

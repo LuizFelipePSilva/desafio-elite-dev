@@ -5,11 +5,15 @@ import {
   HttpCode,
   HttpStatus,
   Res,
+  Get,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { LoginDto } from '../application/dto/login.dto';
 import { LoginUseCase } from '../application/use-cases/login.use-case';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import type { Request, Response } from 'express';
+import type { Request as ExpressRequest, Response } from 'express';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -35,14 +39,14 @@ export class AuthController {
 
     response.cookie('access_token', tokens.accessToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: false,
       sameSite: 'strict',
       maxAge: 15 * 60 * 1000,
     });
 
     response.cookie('refresh_token', tokens.refreshToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
+      secure: false,
       sameSite: 'strict',
       maxAge: 24 * 60 * 60 * 1000,
     });
@@ -50,5 +54,31 @@ export class AuthController {
     return {
       message: 'Login efetuado com sucesso',
     };
+  }
+
+  @Get('me')
+  @UseGuards(JwtAuthGuard)
+  getMe(@Req() req: ExpressRequest & { user: { sub: string; role: string } }) {
+    return {
+      id: req.user.sub,
+      role: req.user.role,
+    };
+  }
+
+  @Post('logout')
+  logout(@Res({ passthrough: true }) res: Response) {
+    res.clearCookie('access_token', {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'lax',
+      path: '/',
+    });
+    res.clearCookie('refresh_token', {
+      httpOnly: true,
+      secure: false,
+      sameSite: 'lax',
+      path: '/',
+    });
+    return { message: 'Logout realizado com sucesso' };
   }
 }
