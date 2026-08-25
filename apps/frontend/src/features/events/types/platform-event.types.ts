@@ -1,4 +1,3 @@
-export type EventType = 'SEAT' | 'TICKET';
 export type EventStatus = 'OPEN' | 'CLOSE' | 'MAINTENACE';
 
 export interface PlatformEvent {
@@ -9,7 +8,6 @@ export interface PlatformEvent {
   location: string;
   eventDate: string;
   capacity: number;
-  eventType: EventType;
   status: EventStatus;
 }
 

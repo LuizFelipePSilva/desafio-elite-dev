@@ -21,7 +21,6 @@ export const createEventSchema = yup.object({
     .number()
     .min(1, 'Capacidade deve ser no mínimo 1')
     .required('Capacidade é obrigatória'),
-  eventType: yup.string().oneOf(['SEAT', 'TICKET'], 'Tipo inválido').required('Tipo é obrigatório'),
   status: yup
     .string()
     .oneOf(['OPEN', 'CLOSE', 'MAINTENANCE'], 'Status inválido')

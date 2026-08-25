@@ -39,7 +39,6 @@ export function CreateEventModal({ isOpen, onClose, ticketmasterEvent }: CreateE
   } = useForm<CreateEventFormData>({
     resolver: yupResolver(createEventSchema),
     defaultValues: {
-      eventType: 'TICKET',
       status: 'OPEN',
     },
   });
@@ -62,13 +61,11 @@ export function CreateEventModal({ isOpen, onClose, ticketmasterEvent }: CreateE
 
   const onSubmit = async (data: CreateEventFormData) => {
     setApiError(null);
-
     try {
       const payload = {
         ...data,
         eventDate: new Date(data.eventDate).toISOString(),
       };
-
       await mutateAsync(payload);
       setToast({ message: 'Evento criado com sucesso!', type: 'success' });
       onClose();
@@ -159,10 +156,6 @@ export function CreateEventModal({ isOpen, onClose, ticketmasterEvent }: CreateE
           </S.Row>
 
           <S.Row>
-            <Select label="Tipo" error={errors.eventType?.message} {...register('eventType')}>
-              <option value="TICKET">Ingresso Geral</option>
-              <option value="SEAT">Assento Numerado</option>
-            </Select>
             <Select label="Status" error={errors.status?.message} {...register('status')}>
               <option value="OPEN">Aberto</option>
               <option value="CLOSE">Fechado</option>
