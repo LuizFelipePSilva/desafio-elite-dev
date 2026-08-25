@@ -17,7 +17,7 @@ export function useCreateUser() {
       setToast({ message: 'Usuário criado com sucesso!', type: 'success' });
     },
     onError: (error) => {
-      const message = error instanceof AppError ? error.message : 'Falha no login';
+      const message = error instanceof AppError ? error.message : 'Falha no registro';
 
       setToast({
         message,
