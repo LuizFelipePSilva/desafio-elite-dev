@@ -2,8 +2,6 @@ import axios, { type AxiosError, type AxiosInstance, type AxiosRequestConfig } f
 
 import { AppError } from './AppError';
 
-import { getToken } from '@/features/auth';
-
 interface ApiErrorResponse {
   message?: string;
   statusCode?: number;
@@ -15,25 +13,21 @@ const httpClient: AxiosInstance = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-});
-
-httpClient.interceptors.request.use((config) => {
-  const token = getToken();
-
-  if (token) {
-    config.headers.set('Authorization', `Bearer ${token}`);
-  }
-
-  return config;
+  withCredentials: true,
 });
 
 httpClient.interceptors.response.use(
   (response) => response,
   (error: AxiosError<ApiErrorResponse>) => {
-    const message = error.response?.data?.message ?? error.message ?? 'Erro inesperado';
+    let message = error.message || 'Erro inesperado';
+    let statusCode = 500;
+    let code = 'UNKNOWN_ERROR';
 
-    const statusCode = error.response?.status ?? 500;
-    const code = error.response?.data?.error ?? 'UNKNOWN_ERROR';
+    if (error.response) {
+      message = error.response.data.message || message;
+      statusCode = error.response.status;
+      code = error.response.data.error || code;
+    }
 
     throw new AppError(message, statusCode, code);
   },

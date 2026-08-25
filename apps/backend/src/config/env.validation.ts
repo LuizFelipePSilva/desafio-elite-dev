@@ -25,6 +25,9 @@ class EnvironmentVariables {
 
   @IsString() JWT_REFRESH_SECRET: string;
   @IsString() JWT_REFRESH_EXPIRES_IN: string;
+
+  @IsString() FRONTEND_URL: string;
+  @IsString() TICKETMASTER_API_KEY: string;
 }
 
 export function validate(config: Record<string, unknown>) {

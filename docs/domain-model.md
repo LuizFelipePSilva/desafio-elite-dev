@@ -30,6 +30,7 @@
 - name
 - price
 - capacity
+- availableQuantity
 
 Exemplos:
 
@@ -39,21 +40,22 @@ Exemplos:
 
 ---
 
-## Seat
+## Payment
 
 - id
-- sectorId
-- row
-- column
+- reservationId
 - status
-
----
+- amount
+- method
+- createdAt
 
 ## Reservation
 
 - id
 - userId
 - eventId
+- sectorId
+- quantity
 - status
 - expiresAt
 
@@ -67,6 +69,7 @@ Exemplos:
 - qrCode
 - status
 - validatedAt
+- validateByUserId
 
 ---
 

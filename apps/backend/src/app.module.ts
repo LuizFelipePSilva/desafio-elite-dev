@@ -8,6 +8,14 @@ import { RedisModule } from './redis/redis.module';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+import { TicketmasterModule } from './modules/ticketmaster/ticketmaster.module';
+import { SeedModule } from './config/seed/seed.module';
+import { EventsModule } from './modules/events/events.module';
+import { ReservationsModule } from './modules/reservations/reservations.module';
+import { SectorsModule } from './modules/sectors/sectors.module';
+import { PaymentsModule } from './modules/payments/payments.module';
+import { ShareLinksModule } from './modules/share-links/share-links.module';
+import { TicketsModule } from './modules/tickets/tickets.module';
 
 @Module({
   providers: [
@@ -30,6 +38,14 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
     RedisModule,
     UsersModule,
     AuthModule,
+    TicketmasterModule,
+    SeedModule,
+    EventsModule,
+    SectorsModule,
+    PaymentsModule,
+    ShareLinksModule,
+    TicketsModule,
+    ReservationsModule,
   ],
 })
 export class AppModule {}

@@ -17,6 +17,6 @@ import { FindUserByIdUseCase } from './application/use-cases/find-user-by-id.use
     FindUserByEmailUseCase,
     FindUserByIdUseCase,
   ],
-  exports: [FindUserByEmailUseCase, FindUserByIdUseCase],
+  exports: [FindUserByEmailUseCase, FindUserByIdUseCase, USER_REPOSITORY],
 })
 export class UsersModule {}
