@@ -9,6 +9,7 @@ import { Home } from '@/pages/Home';
 import { Login } from '@/pages/Login';
 import { PlatformEvents } from '@/pages/PlatformEvents';
 import { Register } from '@/pages/Register';
+import { SharedTicket } from '@/pages/SharedTicket';
 import { Tickets } from '@/pages/Tickets';
 
 export function Router() {
@@ -16,6 +17,7 @@ export function Router() {
     <Routes>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/shared-ticket/:token" element={<SharedTicket />} />
       <Route
         path="/"
         element={
