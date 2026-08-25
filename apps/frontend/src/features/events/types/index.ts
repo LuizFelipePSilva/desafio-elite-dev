@@ -18,7 +18,6 @@ export interface TicketmasterEventsResponse {
   page: Page;
 }
 
-export type EventType = 'SEAT' | 'TICKET';
 export type EventStatus = 'OPEN' | 'CLOSE' | 'MAINTENANCE';
 
 export interface CreateEventInput {
@@ -28,6 +27,5 @@ export interface CreateEventInput {
   location: string;
   eventDate: Date;
   capacity: number;
-  eventType: EventType;
   status: EventStatus;
 }
