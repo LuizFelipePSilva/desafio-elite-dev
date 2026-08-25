@@ -42,9 +42,6 @@ export function Navbar() {
             <S.NavLink to="/validate" $active={isActive('/validate')}>
               Validar
             </S.NavLink>
-            <S.NavLink to="/history" $active={isActive('/history')}>
-              Histórico
-            </S.NavLink>
           </>
         )}
         <S.LogoutButton onClick={() => logout()}>Sair</S.LogoutButton>
